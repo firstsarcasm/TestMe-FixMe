@@ -43,6 +43,6 @@ result содержит текст Your amount of money is + значение п
 
 Значение amount по умолчанию равно 0
 
-##Запуск приложения
+## Запуск приложения
 java -jar server-*version*-.jar  
 Порт: 8080
