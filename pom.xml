@@ -15,7 +15,7 @@
     <description>Application for testing and learning purposes</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>14</java.version>
     </properties>
 
     <dependencies>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.20</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
