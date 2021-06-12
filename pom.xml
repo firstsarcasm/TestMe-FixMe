@@ -54,5 +54,23 @@
             </plugin>
         </plugins>
     </build>
-
+         <profiles>
+    <profile>
+      <id>github</id>
+      <activation>
+        <property>
+          <name>useGitHubPackages</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <distributionManagement>
+        <repository>
+          <id>github</id>
+          <name>GitHub Packages</name>
+          <url>https://maven.pkg.github.com/firstsarcasm/TestMe-FixMe</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+         
 </project>
