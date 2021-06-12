@@ -23,6 +23,12 @@ jobs:
         java-version: '14'
         distribution: 'adopt'
         
+    - name: Get release
+      id: get_release
+      uses: bruceadams/get-release@v1.2.2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
@@ -30,3 +36,14 @@ jobs:
       run: mvn --batch-mode -DuseGitHubPackages=true deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Upload release binary
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: target/${{ env.FILENAME }}.jar
+        asset_name: ${{ env.FILENAME }}.jar
+        asset_content_type: application/java-archive      
+        #args: target/${{ env.FILENAME }}.jar application/java-archive
