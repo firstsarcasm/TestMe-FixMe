@@ -41,6 +41,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - uses: actions/checkout@v2
+    
+    - name: ls
+      run: ls -R
+    
     - uses: papeloto/action-zip@v1
       with:
         files: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
