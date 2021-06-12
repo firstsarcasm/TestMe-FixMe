@@ -1,8 +1,0 @@
-language: java
-jdk:
-  - openjdk14
-  
-sudo: false # faster builds
-
-script:
-  - mvn clean package
