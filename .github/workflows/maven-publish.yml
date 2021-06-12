@@ -40,13 +40,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Upload release binary
-      uses: actions/upload-release-asset@v1.0.2      
-      with:
-        upload_url: ${{ steps.get_release.outputs.upload_url }}
-        asset_path: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
-        #asset_name: test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
-        asset_name: some.jar
-        asset_content_type: application/java-archive
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+   # - name: Upload release binary
+   #   uses: actions/upload-release-asset@v1.0.2      
+   #   with:
+   #     upload_url: ${{ steps.get_release.outputs.upload_url }}
+   #     asset_path: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
+   #     #asset_name: test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
+   #     asset_name: some.jar
+   #     asset_content_type: application/java-archive
+   #   env:
+   #     GITHUB_TOKEN: ${{ github.token }}
