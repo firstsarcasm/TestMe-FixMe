@@ -39,14 +39,20 @@ jobs:
       run: mvn --batch-mode -DuseGitHubPackages=true deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - uses: actions/checkout@v2
+    - uses: papeloto/action-zip@v1
+      with:
+        files: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
+        dest: test-me-fix-me.zip
         
-   # - name: Upload release binary
-   #   uses: actions/upload-release-asset@v1.0.2      
-   #   with:
-   #     upload_url: ${{ steps.get_release.outputs.upload_url }}
-   #     asset_path: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
-   #     #asset_name: test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
-   #     asset_name: some.jar
-   #     asset_content_type: application/java-archive
-   #   env:
-   #     GITHUB_TOKEN: ${{ github.token }}
+    - name: Upload release binary
+      uses: actions/upload-release-asset@v1.0.2      
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: ./test-me-fix-me.zip
+        #asset_name: test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
+        asset_name: test-me-fix-me.zip
+        asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
