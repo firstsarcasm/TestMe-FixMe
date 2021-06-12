@@ -27,4 +27,6 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Deploy to GitHub
-      run: mvn deploy -Dregistry=https://maven.pkg.github.com/firstsarcasm -Dtoken=$GH_TOKEN
+      run: mvn --batch-mode -DuseGitHubPackages=true deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
