@@ -49,4 +49,4 @@ jobs:
         asset_path: target/test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
         #asset_name: test-me-fix-me-${{ steps.get_version.outputs.version }}-SNAPSHOT.jar
         asset_name: some.jar
-        #asset_content_type: application/java-archive
+        asset_content_type: application/java-archive
