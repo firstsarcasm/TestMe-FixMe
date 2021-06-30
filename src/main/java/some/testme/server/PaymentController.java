@@ -19,7 +19,7 @@ public class PaymentController {
 
 	@GetMapping("/set-amount")
 	public PaymentResult setAmount(
-			@RequestParam int value
+			@RequestParam double value
 	) {
 		this.value = value;
 		return new PaymentResult("Your amaunt of money now is " + value);
