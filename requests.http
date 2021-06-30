@@ -1,4 +1,4 @@
-GET localhost:8080/set-amount?value=55
+GET localhost:8080/set-amount?value=55.01
 ###
 GET localhost:8080/get-amount
 ###

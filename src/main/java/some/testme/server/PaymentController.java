@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @RestController
 public class PaymentController {
 //	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 0);
-	private int value = 0;
+	private double value = 0;
 
 	@GetMapping("/set-amount")
 	public PaymentResult setAmount(
