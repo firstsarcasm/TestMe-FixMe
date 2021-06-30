@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 //todo add actuator
 @RestController
 public class PaymentController {
-	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 1);
+	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 0);
 	//todo fix with the solution
 //	private int value = 0;
 
