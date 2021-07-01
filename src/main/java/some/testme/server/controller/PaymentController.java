@@ -1,26 +1,26 @@
-package some.testme.server;
+package some.testme.server.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import some.testme.server.dto.PaymentResult;
 
+import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 
-//todo add spring security
-//todo add validation
-//todo add correlationId
-//todo add swagger
-//todo add actuator
+//todo add proper spring security
+//todo exception handling
+//todo validation doesn't work
+@Validated
 @RestController
 public class PaymentController {
 	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 1);
-	//todo fix with the solution
-//	private int value = 0;
 
 	@GetMapping("/set-amount")
 	public PaymentResult setAmount(
-			@RequestParam int value
+			@RequestParam @Max(Integer.MAX_VALUE) Integer value
 	) {
 		this.value.set(value);
 		BigDecimal BDValue = BigDecimal.valueOf(value);
