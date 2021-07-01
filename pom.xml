@@ -8,10 +8,9 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>some.testme</groupId>
-    <artifactId>server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>server</name>
+    <groupId>org.firstsarcasm</groupId>
+    <artifactId>test-me-fix-me</artifactId>
+    <version>0.0.1-SNAPSHOT</version>   
     <description>Application for testing and learning purposes</description>
 
     <properties>
@@ -54,5 +53,23 @@
             </plugin>
         </plugins>
     </build>
-
+         <profiles>
+    <profile>
+      <id>github</id>
+      <activation>
+        <property>
+          <name>useGitHubPackages</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <distributionManagement>
+        <repository>
+          <id>github</id>
+          <name>GitHub Packages</name>
+          <url>https://maven.pkg.github.com/firstsarcasm/TestMe-FixMe</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+         
 </project>
