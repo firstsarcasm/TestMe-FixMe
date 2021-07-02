@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 import some.testme.server.dto.PaymentResult;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
+//todo add db for users
 //todo add proper spring security
-//todo exception handling
-//todo validation doesn't work
+//todo improve exception handling
 @Validated
 @RestController
 public class PaymentController {
@@ -20,7 +21,7 @@ public class PaymentController {
 
 	@GetMapping("/set-amount")
 	public PaymentResult setAmount(
-			@RequestParam @Max(Integer.MAX_VALUE) Integer value
+			@RequestParam @Min(0) @Max(Integer.MAX_VALUE) Integer value
 	) {
 		this.value.set(value);
 		BigDecimal BDValue = BigDecimal.valueOf(value);
