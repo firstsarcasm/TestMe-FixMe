@@ -16,7 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/get_token").permitAll()
+				.antMatchers(HttpMethod.POST, "/get-token", "/register").permitAll()
+				.antMatchers(HttpMethod.GET, "/swagger-ui/*", "/v3/api-docs/*", "/add-one", "/v3/api-docs").permitAll()
+				.antMatchers(HttpMethod.GET, "/actuator", "/actuator/*").permitAll()
+				.antMatchers(HttpMethod.GET, "/h2-console", "/h2-console/*").permitAll()
 				.anyRequest().authenticated();
 	}
 }

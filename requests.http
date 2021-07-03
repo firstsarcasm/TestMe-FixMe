@@ -1,11 +1,24 @@
 GET localhost:8080/set-amount?value=-99999
 Authorization: Bearer get_token_result
+
 ###
 GET localhost:8080/get-amount
+
 ###
 GET localhost:8080/add-one
+
 ###
-POST localhost:8080/get_token
+POST localhost:8080/get-token
+Content-Type: application/json
+
+{
+  "username": "",
+  "pwd": "",
+  "email": ""
+}
+
+###
+POST localhost:8080/register
 Content-Type: application/json
 
 {
