@@ -18,7 +18,6 @@ import java.security.Principal;
 @RestController
 @RequiredArgsConstructor
 //todo move logic to service
-//todo improve exception handling
 public class PaymentController {
 
 	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 1);
