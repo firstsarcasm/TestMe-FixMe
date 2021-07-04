@@ -17,22 +17,23 @@ import some.testme.server.constants.ApiStatus;
 import some.testme.server.dto.ApiError;
 import some.testme.server.exception.ApiException;
 
-import static java.util.Objects.isNull;
+import java.util.Optional;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Configuration
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
-
 	//todo make custom handlers for different exceptions
+
+	private static final String DEFAULT_ERROR_MESSAGE = "Got unexpected error";
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-		String message = ex.getMessage();
-		if (isNull(message)) {
-			message = "Got unexpected error";
-		}
+		String message = Optional.ofNullable(ex.getMessage())
+				.orElse(DEFAULT_ERROR_MESSAGE);
+
 		return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(
 				ApiError.builder()
 						.status(ApiStatus.ERROR)

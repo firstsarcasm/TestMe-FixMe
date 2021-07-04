@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
 
-	private AtomicInteger counter = new AtomicInteger(0);
+	private final AtomicInteger counter = new AtomicInteger(0);
 
 	@Override
 	public ApiResult getToken(User user) {
@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
 				.builder()
 				.setId(ID)
 				.setSubject(user.getUsername())
-//				.setHeader(Map.of("email", user.getEmail()))
 				.claim(AUTHORITIES,
 						grantedAuthorities.stream()
 								.map(GrantedAuthority::getAuthority)
