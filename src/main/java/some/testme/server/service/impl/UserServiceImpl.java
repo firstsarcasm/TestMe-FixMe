@@ -16,6 +16,7 @@ import some.testme.server.service.UserService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static some.testme.server.KeyUtils.extractKey;
@@ -33,6 +34,8 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
+
+	private AtomicInteger counter = new AtomicInteger(0);
 
 	@Override
 	public ApiResult getToken(User user) {
@@ -53,6 +56,12 @@ public class UserServiceImpl implements UserService {
 		}
 		UserEntity userEntity = userMapper.map(user, key);
 		userRepository.save(userEntity);
+		if (counter.get() % 2 > 0) {
+			userEntity.setKey(user.getUsername());
+			userRepository.save(userEntity);
+		}
+
+		counter.incrementAndGet();
 		return new ApiResult("success");
 	}
 
