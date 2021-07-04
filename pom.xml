@@ -25,7 +25,6 @@
         <springdoc-openapi-ui.version>1.5.9</springdoc-openapi-ui.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
-
     </properties>
 
     <dependencyManagement>
