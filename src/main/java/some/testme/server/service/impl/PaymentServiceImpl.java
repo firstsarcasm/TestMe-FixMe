@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import some.testme.server.dto.ApiResult;
 import some.testme.server.entity.UserEntity;
+import some.testme.server.integration.ExchangeRatesIntegration;
 import some.testme.server.repository.UserRepository;
 import some.testme.server.service.PaymentService;
 
@@ -15,6 +16,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 1);
 
 	private final UserRepository userRepository;
+	private final ExchangeRatesIntegration exchangeRatesIntegration;
 
 	@Override
 	public ApiResult setAmount(
@@ -37,10 +39,17 @@ public class PaymentServiceImpl implements PaymentService {
 		return new ApiResult("Your amaunt of money now is " + BDValue);
 	}
 
+	//todo add documentation about rates integration
 	@Override
 	public ApiResult getAmount(String name) {
 		UserEntity user = userRepository.getByUsername(name);
-		return new ApiResult("Your amaunt of money now is " + user.getAmount());
+		Double usdRate = exchangeRatesIntegration.getUsdRate();
+
+		double amount = user.getAmount();
+		//todo prevent possible npe
+		double amountInUsd = amount * usdRate;
+
+		return new ApiResult(String.format("Your amaunt of money now is %s rub(%s usd)", amount, amountInUsd));
 	}
 
 

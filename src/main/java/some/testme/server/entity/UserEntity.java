@@ -38,6 +38,7 @@ public class UserEntity {
 	@Size(max = 500, min = 5)
 	private String email;
 
+	//todo
 	@NotNull
 	@NotEmpty
 	private double amount;

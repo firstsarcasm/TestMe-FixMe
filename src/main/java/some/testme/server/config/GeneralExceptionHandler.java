@@ -25,8 +25,6 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
-	//todo make custom handlers for different exceptions
-
 	private static final String DEFAULT_ERROR_MESSAGE = "Got unexpected error";
 
 	@ExceptionHandler(Exception.class)
