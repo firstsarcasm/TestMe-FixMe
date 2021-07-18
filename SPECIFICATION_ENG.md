@@ -2,7 +2,7 @@
 # IN PROGRESS
 # Documentation
 
-All requests instead of get-token и register require aithorization header:
+All requests instead of get-token и register require authorization header:
 Authorization: <get-token result>
 
 1. GET /set-amount  
@@ -11,7 +11,7 @@ Authorization: <get-token result>
    ```
    | Name          | Type      | Required              | Constraints                  |
    | :-----------: |:---------:|:--------------------: |:----------------------------:|
-   | value         | double    | yes                   | grather than zero                  |
+   | value         | double    | yes                   | grater than zero                  |
    
    Case:  
    1. Method gets number('value')  
@@ -25,8 +25,8 @@ Authorization: <get-token result>
 ---
 2. GET /get-amount   
    Case:  
-   1. Метод возвращает значение amount
-   2. Возвращает в ответе json вида:
+   1. Method returns the value of amount
+   2. Method returns json of the form:
    ```json
    {
     "result":"Your amount of money is 10"
@@ -36,8 +36,8 @@ Authorization: <get-token result>
 ---
 2. GET /add-one 
    Case:  
-   1. Метод добавляет единицу к amount
-   2. Возвращает в ответе json вида:
+   1. Method adds one to amount
+   2. Method returns json of the form:
    ```json
    {
     "result":"Your amount of money is 11"
@@ -51,15 +51,15 @@ result содержит текст Your amount of money is + значение п
 ---
 4. POST /get-token
    ```
-    Описание тела запроса:
+    Descriptiion of body params:
    ```
-   | Название      | Тип       | Обязательность       | Ограничения                  |
+   | Name          | Type      | Required             | Constraints                  |
    | :-----------: |:---------:|:--------------------:|:----------------------------:|
-   | username      | String    | да                   | Больше нуля                  |
-   | pwd           | String    | да                   | Больше нуля                  |
-   | email         | String    | да                   | Больше нуля                  |
+   | username      | String    | yes                  | grater than zero             |
+   | pwd           | String    | yes                  | grater than zero             |
+   | email         | String    | yes                  | grater than zero             |
    ```
-     Пример тела запроса:
+     Request body example:
    ```
    ```json
     {
@@ -72,7 +72,7 @@ result содержит текст Your amount of money is + значение п
    Case:
    1. Метод осуществляет поиск пользователя в базе данных
    2. Метод формирует токен для доступа пользователя к сервису
-   3. Возвращает в ответе json вида:
+   3. Method returns json of the form:
    ```json
    {
    "result":"Bearer <token-value>"
@@ -83,15 +83,15 @@ result содержит текст Your amount of money is + значение п
 
 5. POST /register
    ```
-    Описание тела запроса:
+    Descriptiion of body params:
    ```
-   | Название      | Тип       | Обязательность       | Ограничения                  |
-      | :-----------: |:---------:|:--------------------:|:----------------------------:|
-   | username      | String    | да                   | Больше нуля                  |
-   | pwd           | String    | да                   | Больше нуля                  |
-   | email         | String    | да                   | Больше нуля                  |
+   | Name          | Type      | Required             | Constraints                  |
+   | :-----------: |:---------:|:--------------------:|:----------------------------:|
+   | username      | String    | yes                  | grater than zero             |
+   | pwd           | String    | yes                  | grater than zero             |
+   | email         | String    | yes                  | grater than zero             |
    ```
-     Пример тела запроса:
+     Request body example:
    ```
    ```json
     {
@@ -104,14 +104,14 @@ result содержит текст Your amount of money is + значение п
    1. Метод регистрирует пользователя
       1. Метод формирует уникальный ключ пользователя
       2. Метод сохраняет данные пользователя в таблицу user
-   2. Возвращает в ответе json вида:
+   2. Method returns json of the form:
    ```json
    {
     "result":"success"
    }
    ```
 ---
-### Обработка ошибок  
+### Error handling  
    При возниконовении любых ошибок во время работы программы пользователю должен вернуться ответ следющего формата:  
    ```json
    {
@@ -121,18 +121,19 @@ result содержит текст Your amount of money is + значение п
    }
    ```
 
-## Запуск приложения
+## How to run
 java -jar server-*version*-.jar  
-Порт: 8080
+Port: 8080
 
 ## Swagger
 
-http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+[swagger](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
 
 ## Actuator
 
-http://localhost:8080/actuator
+[actuator](http://localhost:8080/actuator)
 
-## Интерфейс базы данных
+## DB interface
 
-http://localhost:8080/h2-console
+For storing data the service uses an embedded h2 db.  
+Credentials are provided in [application.properties](src/main/resources/application.properties) file
