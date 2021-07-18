@@ -1,5 +1,7 @@
 package some.testme.server.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,7 @@ public class PaymentController {
 
 	private final PaymentService paymentService;
 
+	@Operation(security = @SecurityRequirement(name = "Bearer"))
 	@GetMapping("/set-amount")
 	public ApiResult setAmount(
 			Principal principal,
@@ -28,12 +31,14 @@ public class PaymentController {
 		return paymentService.setAmount(name, value);
 	}
 
+	@Operation(security = @SecurityRequirement(name = "Bearer"))
 	@GetMapping("/get-amount")
 	public ApiResult getAmount(Principal principal) {
 		String name = principal.getName();
 		return paymentService.getAmount(name);
 	}
 
+	@Operation(security = @SecurityRequirement(name = "Bearer"))
 	@GetMapping("/add-one")
 	public ApiResult addOne(Principal principal) {
 		String name = principal.getName();

@@ -125,12 +125,12 @@ java -jar server-*version*-.jar
 
 ## Swagger
 
-http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+[swagger](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)
 
 ## Actuator
 
-http://localhost:8080/actuator
+[actuator](http://localhost:8080/actuator)
 
 ## Интерфейс базы данных
 
-http://localhost:8080/h2-console
+[h2-console](http://localhost:8080/h2-console)
