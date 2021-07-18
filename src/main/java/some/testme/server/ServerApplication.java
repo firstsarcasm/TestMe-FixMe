@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //todo http request to somewhere
 //todo queues?
 //todo add docker for activemq, postgres and redis
+//todo add proper github actions
 @SpringBootApplication
 public class ServerApplication {
 
