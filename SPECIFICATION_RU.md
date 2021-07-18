@@ -133,4 +133,5 @@ java -jar server-*version*-.jar
 
 ## Интерфейс базы данных
 
-[h2-console](http://localhost:8080/h2-console)
+Для хранения данных сервис использует встроенную БД h2.   
+Коннекты к базе можно найти в файле [application.properties](src/main/resources/application.properties)
