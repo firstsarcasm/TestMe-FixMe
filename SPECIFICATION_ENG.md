@@ -44,9 +44,10 @@ Authorization: <get-token result>
    }
    ```
 
-result содержит текст Your amount of money is + значение параметра "value"
+result contains text "Your amount of money is" + value of the "value" parameter
 
-Значение amount по умолчанию равно 0
+amount is 0 by default   
+   
 
 ---
 4. POST /get-token
@@ -70,8 +71,8 @@ result содержит текст Your amount of money is + значение п
    ```
 
    Case:
-   1. Метод осуществляет поиск пользователя в базе данных
-   2. Метод формирует токен для доступа пользователя к сервису
+   1. Method makes search of user in db
+   2. Method produces token for user access to the service
    3. Method returns json of the form:
    ```json
    {
@@ -101,9 +102,9 @@ result содержит текст Your amount of money is + значение п
     }
    ```
    Сценарий:
-   1. Метод регистрирует пользователя
-      1. Метод формирует уникальный ключ пользователя
-      2. Метод сохраняет данные пользователя в таблицу user
+   1. Method registers a user
+      1. Method genereates unique user key
+      2. Method save user data to the table 'user'
    2. Method returns json of the form:
    ```json
    {
