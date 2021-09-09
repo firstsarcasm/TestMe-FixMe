@@ -6,4 +6,4 @@
 4. Ask a programmer-to-be friend to fix any bugs in the new branch
 5. Repeat several times
 6. Add new functions to the documentation and ask the friend to change the code according to them
-7. Repeat
+7. Rinse and repeat
