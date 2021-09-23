@@ -22,9 +22,6 @@ public class UserController {
 
 	@PostMapping("get-token")
 	public ResponseEntity<ApiResult> getToken(@Valid @RequestBody User user) {
-		//todo
-		User s = null;
-		s.getEmail();
 		ApiResult result = userService.getToken(user);
 		return ResponseEntity.ok(result);
 	}
