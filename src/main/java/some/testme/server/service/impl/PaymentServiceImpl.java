@@ -55,12 +55,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public ApiResult addOne(String name) {
-		value.set(value.get() + 1);
-
 		UserEntity user = userRepository.getByUsername(name);
-		user.setAmount((double) value.get());
+		double amount = user.getAmount();
+		user.setAmount(++amount);
 		userRepository.save(user);
 
-		return new ApiResult("Your amaunt of money now is " + this.value.get());
+		return new ApiResult("Your amaunt of money now is " + amount);
 	}
 }
