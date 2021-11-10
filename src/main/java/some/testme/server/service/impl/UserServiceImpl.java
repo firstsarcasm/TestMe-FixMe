@@ -16,7 +16,6 @@ import some.testme.server.service.UserService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static some.testme.server.KeyUtils.extractKey;
@@ -30,12 +29,10 @@ public class UserServiceImpl implements UserService {
 	private static final String ID = "softtekJWT";
 	private static final String ROLE_USER = "ROLE_USER";
 	private static final String MY_SECRET_KEY = "mySecretKey";
-	private static final int TOKEN_LIFETIME_MS = 600000;
+	private static final int TOKEN_LIFETIME_MS = 300001;
 
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
-
-	private final AtomicInteger counter = new AtomicInteger(0);
 
 	@Override
 	public ApiResult getToken(User user) {
@@ -56,12 +53,7 @@ public class UserServiceImpl implements UserService {
 		}
 		UserEntity userEntity = userMapper.map(user, key);
 		userRepository.save(userEntity);
-		if (counter.get() % 2 > 0) {
-			userEntity.setKey(user.getUsername());
-			userRepository.save(userEntity);
-		}
 
-		counter.incrementAndGet();
 		return new ApiResult("success");
 	}
 
