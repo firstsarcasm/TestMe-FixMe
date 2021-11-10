@@ -26,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
 		this.value.set(value);
 
 		UserEntity user = userRepository.getByUsername(name);
-//		user.setAmount((double) value);
+		user.setAmount((double) value);
 		userRepository.save(user);
 
 		BigDecimal BDValue = BigDecimal.valueOf(value);
