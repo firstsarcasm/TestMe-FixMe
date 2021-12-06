@@ -3,7 +3,7 @@
 # Documentation
 
 All requests instead of get-token и register require authorization header:
-Authorization: <get-token result>
+Authorization : <get-token result>
 
 1. GET /set-amount  
    ```
