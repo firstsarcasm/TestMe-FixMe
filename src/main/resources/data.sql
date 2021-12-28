@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS user;
+--DROP TABLE IF EXISTS user;
 
 CREATE TABLE if not exists user
 (
