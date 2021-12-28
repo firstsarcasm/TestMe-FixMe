@@ -25,7 +25,7 @@ public class PaymentController {
 	@GetMapping("/set-amount")
 	public ApiResult setAmount(
 			Principal principal,
-			@RequestParam @Min(-1) @Max(Integer.MAX_VALUE) Integer value
+			@RequestParam @Min(0) @Max(Integer.MAX_VALUE) Integer value
 	) {
 		String name = principal.getName();
 		return paymentService.setAmount(name, value);
