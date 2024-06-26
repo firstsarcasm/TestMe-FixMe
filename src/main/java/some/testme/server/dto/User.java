@@ -1,5 +1,6 @@
 package some.testme.server.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class User {
 	@NotNull
 	@NotEmpty
 	@Size(max = 500, min = 5)
+	@Schema(example = "some@mail.com")
 	private String email;
 
 }
