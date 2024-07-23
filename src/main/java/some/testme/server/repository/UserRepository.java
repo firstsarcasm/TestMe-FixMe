@@ -6,6 +6,7 @@ import some.testme.server.entity.UserEntity;
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
 	boolean existsByKey(String key);
+	boolean existsByEmail(String email);
 
 	UserEntity getByUsername(String username);
 

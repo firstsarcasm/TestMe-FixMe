@@ -49,13 +49,23 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ApiResult register(User user) {
+		boolean emailAlreadyExists = userRepository.existsByEmail(user.getEmail());
+		if (emailAlreadyExists) {
+			String message = String.format("The email='%s' is already in use", user.getEmail());
+			throw ApiException.badRequest(message);
+		}
+
 		String key = extractKey(user);
 		boolean userAlreadyExists = userRepository.existsByKey(key);
 		if (userAlreadyExists) {
 			throw ApiException.badRequest("User already exists");
 		}
 		UserEntity userEntity = userMapper.map(user, key);
-		userRepository.save(userEntity);
+		try {
+			userRepository.save(userEntity);
+		} catch (Exception e) {
+			throw ApiException.internal("Db error");
+		}
 		if (counter.get() % 2 > 0) {
 			userEntity.setKey(user.getUsername());
 			userRepository.save(userEntity);

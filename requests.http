@@ -26,3 +26,13 @@ Content-Type: application/json
   "pwd": "",
   "email": ""
 }
+
+###
+POST localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "testMe2",
+  "pwd": "fixM2e",
+  "email": "testme@fixme.try2"
+}

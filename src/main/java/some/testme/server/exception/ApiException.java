@@ -18,4 +18,11 @@ public class ApiException extends RuntimeException {
 				.status(ApiStatus.ERROR)
 				.build(), HttpStatus.BAD_REQUEST);
 	}
+
+	public static ApiException internal(String message) {
+		return new ApiException(ApiError.builder()
+				.message(message)
+				.status(ApiStatus.ERROR)
+				.build(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
