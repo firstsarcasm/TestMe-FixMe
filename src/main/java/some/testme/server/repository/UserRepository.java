@@ -7,6 +7,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
 	boolean existsByKey(String key);
 	boolean existsByEmail(String email);
+	boolean existsByUsername(String username);
 
 	UserEntity getByUsername(String username);
 

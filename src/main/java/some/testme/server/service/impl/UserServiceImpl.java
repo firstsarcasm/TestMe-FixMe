@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService {
 			throw ApiException.badRequest(message);
 		}
 
+		boolean usernameAlreadyExists = userRepository.existsByUsername(user.getUsername());
+		if (usernameAlreadyExists) {
+			String message = String.format("The username='%s' is already in use", user.getUsername());
+			throw ApiException.badRequest(message);
+		}
+
 		String key = extractKey(user);
 		boolean userAlreadyExists = userRepository.existsByKey(key);
 		if (userAlreadyExists) {
