@@ -10,4 +10,4 @@ CREATE TABLE if not exists user
 );
 
 INSERT INTO user (username, email, amount, key)
-VALUES ('Django', 'dont-call-me@nothing.com', 0, 'SERGphbmdvX2RvbnQtY2FsbC1tZUBub3RoaW5nLmNvbV9teV9zZWNyZXRfcGFzc3dvcmQ=');
+VALUES ('Django', 'dont-call-me@nothing.com', 0, 'Lrm0XfMkbkYM0LesFhA5lmb/2Ri7pvLXxnLwZg9LWG8=');

@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		String key = extractKey(user);
 		boolean userAlreadyExists = userRepository.existsByKey(key);
 		if (!userAlreadyExists) {
-			throw ApiException.badRequest("There is no user with such username and email combination, or password is wrong");
+			throw ApiException.badRequest("There is no user with such username and email combination, or the password is wrong");
 		}
 		return new ApiResult(getJWTToken(user));
 	}
