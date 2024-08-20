@@ -35,8 +35,6 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final UserMapper userMapper;
 
-	private final AtomicInteger counter = new AtomicInteger(0);
-
 	@Override
 	public ApiResult getToken(User user) {
 		String key = extractKey(user);
@@ -72,12 +70,7 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			throw ApiException.internal("Db error");
 		}
-		if (counter.get() % 2 > 0) {
-			userEntity.setKey(user.getUsername());
-			userRepository.save(userEntity);
-		}
 
-		counter.incrementAndGet();
 		return new ApiResult("success");
 	}
 
