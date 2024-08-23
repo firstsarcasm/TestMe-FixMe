@@ -23,8 +23,9 @@ Authorization: <результат выполнения метода get-token>
 ---
 2. GET /get-amount   
 Сценарий:
-   1. Метод возвращает значение amount
-   2. Возвращает в ответе json вида:
+   1. Получает данные по валютам из https://www.cbr-xml-daily.ru/latest.js
+   2. Метод возвращает значение amount
+   3. Возвращает в ответе json вида:
    ```json
    {
     "result":"Your amount of money is 10"
