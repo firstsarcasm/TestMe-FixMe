@@ -30,12 +30,6 @@ public class PaymentServiceImpl implements PaymentService {
 		userRepository.save(user);
 
 		BigDecimal BDValue = BigDecimal.valueOf(value);
-		if (BDValue != null) {
-			if (BDValue.abs().multiply(BigDecimal.TEN)
-					.compareTo(BigDecimal.valueOf(50)) >= 0) {
-				BDValue = BDValue.add(BigDecimal.ONE);
-			}
-		}
 		return new ApiResult("Your amaunt of money now is " + BDValue);
 	}
 
