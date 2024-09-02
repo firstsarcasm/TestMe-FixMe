@@ -21,7 +21,7 @@
         <spring-cloud-sleuth.version>3.0.3</spring-cloud-sleuth.version>
         <jjwt.version>0.9.1</jjwt.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <logbook-spring-boot-starter.version>2.4.1</logbook-spring-boot-starter.version>
+        <logbook-spring-boot-starter.version>2.14.0</logbook-spring-boot-starter.version>
         <springdoc-openapi-ui.version>1.5.9</springdoc-openapi-ui.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
