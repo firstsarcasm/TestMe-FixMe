@@ -10,6 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 import org.zalando.logbook.spring.LogbookClientHttpRequestInterceptor;
 
+import java.time.Duration;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -20,6 +21,7 @@ public class IntegrationConfig {
 	private static final String APPLICATION = "application";
 	private static final String JAVASCRIPT = "javascript";
 	private static final List<MediaType> APPLICATION_JAVASCRIPT_MEDIA_TYPE = singletonList(new MediaType(APPLICATION, JAVASCRIPT));
+	private static final Duration THIRTY_SECONDS = Duration.ofSeconds(30);
 
 	@Bean(name = "exchangeRatesRestTemplate")
 	public RestTemplate restTemplate(LogbookClientHttpRequestInterceptor interceptor) {
@@ -29,6 +31,8 @@ public class IntegrationConfig {
 		return new RestTemplateBuilder()
 				.additionalMessageConverters(converter)
 				.additionalInterceptors(interceptor)
+				.setConnectTimeout(THIRTY_SECONDS)
+				.setReadTimeout(THIRTY_SECONDS)
 				.requestFactory(() -> new BufferingClientHttpRequestFactory(new HttpComponentsClientHttpRequestFactory()))
 				.build();
 	}
