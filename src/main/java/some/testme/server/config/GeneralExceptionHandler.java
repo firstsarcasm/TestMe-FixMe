@@ -17,6 +17,7 @@ import some.testme.server.constants.ApiStatus;
 import some.testme.server.dto.ApiError;
 import some.testme.server.exception.ApiException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
@@ -44,6 +45,15 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.status(ex.getHttpStatus()).body(ex.getApiError());
 	}
 
+	@ExceptionHandler(ConstraintViolationException.class)
+	public final ResponseEntity<Object> handleApiException(ConstraintViolationException ex) {
+		return ResponseEntity.badRequest().body(
+				ApiError.builder()
+						.status(ApiStatus.ERROR)
+						.message(ex.getMessage())
+						.build());
+	}
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		BindingResult result = ex.getBindingResult();
@@ -54,6 +64,8 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 						.message(fieldError.getField() + " " + fieldError.getDefaultMessage())
 						.build());
 	}
+
+
 
 }
 
