@@ -16,7 +16,6 @@ import some.testme.server.service.UserService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import static some.testme.server.KeyUtils.extractKey;

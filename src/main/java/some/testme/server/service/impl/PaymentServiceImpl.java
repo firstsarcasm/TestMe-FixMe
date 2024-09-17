@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
-	private Integer value = 1;
+	private Integer value = 0;
 
 	private final UserRepository userRepository;
 	private final ExchangeRatesIntegration exchangeRatesIntegration;
@@ -50,7 +50,6 @@ public class PaymentServiceImpl implements PaymentService {
 			log.error("Got an error from exchange service: " + e.getMessage());
 			return new ApiResult(String.format("not able to get exchange rates"));
 		}
-
 	}
 
 
