@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
-	private final ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 1);
+	private Integer value = 1;
 
 	private final UserRepository userRepository;
 	private final ExchangeRatesIntegration exchangeRatesIntegration;
@@ -25,7 +25,7 @@ public class PaymentServiceImpl implements PaymentService {
 			String name,
 			Integer value
 	) {
-		this.value.set(value);
+		this.value = value;
 
 		UserEntity user = userRepository.getByUsername(name);
 		user.setAmount((double) value);
@@ -57,12 +57,12 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public ApiResult addOne(String name) {
-		value.set(value.get() + 1);
+		value = value + 1;
 
 		UserEntity user = userRepository.getByUsername(name);
-		user.setAmount((double) value.get());
+		user.setAmount((double) value);
 		userRepository.save(user);
 
-		return new ApiResult("Your amaunt of money now is " + this.value.get());
+		return new ApiResult("Your amaunt of money now is " + this.value);
 	}
 }
