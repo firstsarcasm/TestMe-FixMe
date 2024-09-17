@@ -42,16 +42,15 @@ public class PaymentServiceImpl implements PaymentService {
 		Double usdRate;
 		try {
 			usdRate = exchangeRatesIntegration.getUsdRate();
+			double amount = user.getAmount();
+			double amountInUsd = amount * usdRate;
+
+			return new ApiResult(String.format("Your amaunt of money now is %s rub(%s usd)", amount, amountInUsd));
 		} catch (Exception e) {
 			log.error("Got an error from exchange service: " + e.getMessage());
 			return new ApiResult(String.format("not able to get exchange rates"));
 		}
 
-		double amount = user.getAmount();
-		//todo prevent possible npe
-		double amountInUsd = amount * usdRate;
-
-		return new ApiResult(String.format("Your amaunt of money now is %s rub(%s usd)", amount, amountInUsd));
 	}
 
 
