@@ -5,17 +5,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import some.testme.server.dto.ApiResult;
 import some.testme.server.entity.UserEntity;
+import some.testme.server.exception.ApiException;
 import some.testme.server.integration.ExchangeRatesIntegration;
 import some.testme.server.repository.UserRepository;
 import some.testme.server.service.PaymentService;
 
 import java.math.BigDecimal;
 
+import static java.util.Objects.isNull;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
-	private Integer value = 0;
 
 	private final UserRepository userRepository;
 	private final ExchangeRatesIntegration exchangeRatesIntegration;
@@ -25,42 +27,45 @@ public class PaymentServiceImpl implements PaymentService {
 			String name,
 			Integer value
 	) {
-		this.value = value;
-
 		UserEntity user = userRepository.getByUsername(name);
 		user.setAmount((double) value);
 		userRepository.save(user);
 
 		BigDecimal BDValue = BigDecimal.valueOf(value);
-		return new ApiResult("Your amaunt of money now is " + BDValue);
+		return new ApiResult("Your amount of money now is " + BDValue);
 	}
 
 	@Override
 	public ApiResult getAmount(String name) {
 		UserEntity user = userRepository.getByUsername(name);
 
-		Double usdRate;
 		try {
-			usdRate = exchangeRatesIntegration.getUsdRate();
+			Double usdRate = exchangeRatesIntegration.getUsdRate();
+
+			if(isNull(usdRate)) {
+				throw ApiException.internal("Not able to get exchange rates");
+			}
+
 			double amount = user.getAmount();
 			double amountInUsd = amount * usdRate;
 
-			return new ApiResult(String.format("Your amaunt of money now is %s rub(%s usd)", amount, amountInUsd));
+			return new ApiResult(String.format("Your amount of money now is %s rub(%s usd)", amount, amountInUsd));
 		} catch (Exception e) {
 			log.error("Got an error from exchange service: " + e.getMessage());
-			return new ApiResult(String.format("not able to get exchange rates"));
+			throw ApiException.internal("exchange rate service is not available");
 		}
 	}
 
-
 	@Override
 	public ApiResult addOne(String name) {
-		value = value + 1;
-
 		UserEntity user = userRepository.getByUsername(name);
-		user.setAmount((double) value);
+
+		double newAmount = user.getAmount();
+		user.setAmount(newAmount);
+
 		userRepository.save(user);
 
-		return new ApiResult("Your amaunt of money now is " + this.value);
+		return new ApiResult("Your amount of money now is " + newAmount);
 	}
+	
 }
