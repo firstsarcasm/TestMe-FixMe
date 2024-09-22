@@ -17,7 +17,7 @@ Authorization: <результат выполнения метода get-token>
    3. Возвращает в ответе json вида:  
    ```json
    {  
-    "result":"Your amount of money is 10"  
+    "result":"Your amount of money is 10.0"  
    }  
    ```  
 ---
@@ -39,7 +39,7 @@ Authorization: <результат выполнения метода get-token>
    2. Возвращает в ответе json вида:
    ```json
    {
-    "result":"Your amount of money is 11"
+    "result":"Your amount of money is 11.0"
    }
    ```
 
