@@ -60,7 +60,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public ApiResult addOne(String name) {
 		UserEntity user = userRepository.getByUsername(name);
 
-		double newAmount = user.getAmount();
+		double newAmount = user.getAmount() + 1;
 		user.setAmount(newAmount);
 
 		userRepository.save(user);
