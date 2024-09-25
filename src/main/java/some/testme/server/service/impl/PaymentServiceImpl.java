@@ -10,8 +10,6 @@ import some.testme.server.integration.ExchangeRatesIntegration;
 import some.testme.server.repository.UserRepository;
 import some.testme.server.service.PaymentService;
 
-import java.math.BigDecimal;
-
 import static java.util.Objects.isNull;
 
 @Slf4j
@@ -31,8 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
 		user.setAmount((double) value);
 		userRepository.save(user);
 
-		BigDecimal BDValue = BigDecimal.valueOf(value);
-		return new ApiResult("Your amount of money now is " + BDValue);
+		return new ApiResult("Your amount of money now is " + (double) value);
 	}
 
 	@Override
