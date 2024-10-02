@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS user;
-
 CREATE TABLE if not exists user
 (
     id       BIGINT AUTO_INCREMENT PRIMARY KEY,
