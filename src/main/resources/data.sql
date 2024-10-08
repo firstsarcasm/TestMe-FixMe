@@ -6,6 +6,3 @@ CREATE TABLE if not exists user
     amount   decimal  NOT NULL,
     key      varchar2 NOT NULL UNIQUE
 );
-
-INSERT INTO user (username, email, amount, key)
-VALUES ('Django', 'dont-call-me@nothing.com', 0, 'Lrm0XfMkbkYM0LesFhA5lmb/2Ri7pvLXxnLwZg9LWG8=');
