@@ -1,5 +1,6 @@
 package some.testme.server.config;
 
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -65,7 +66,13 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 						.build());
 	}
 
-
-
+	@Override
+	protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+		return ResponseEntity.badRequest().body(
+				ApiError.builder()
+						.status(ApiStatus.ERROR)
+						.message("Передан некоррекный тип входных данных")
+						.build());
+	}
 }
 
