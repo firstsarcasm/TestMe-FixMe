@@ -71,7 +71,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.badRequest().body(
 				ApiError.builder()
 						.status(ApiStatus.ERROR)
-						.message("Передан некоррекный тип входных данных")
+						.message("Передан некорректный тип входных данных")
 						.build());
 	}
 }
